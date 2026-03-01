@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nick Pyati</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #001400;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.15;
+      filter: url(#noise);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Shrikhand', cursive;
+      color: #FFB400;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: #c8e6c8;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <svg style="position:absolute;width:0;height:0">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+  <h1>Nick Pyati</h1>
+  <p>Coming Soon</p>
+</body>
+</html>
