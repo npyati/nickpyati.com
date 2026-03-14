@@ -7,8 +7,14 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'PartsListLocal';
+      src: url('PartsList-fixed.woff2') format('woff2');
+      font-display: swap;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -16,14 +22,10 @@
     }
 
     body {
-      background: #111111;
+      background: #f0ebe0;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
       position: relative;
     }
 
@@ -31,26 +33,43 @@
       content: '';
       position: fixed;
       inset: 0;
-      opacity: 0.15;
+      opacity: 0.3;
       filter: url(#noise);
-      mix-blend-mode: screen;
+      mix-blend-mode: multiply;
       pointer-events: none;
+      z-index: 10;
+    }
+
+    .top {
+      background: #f0ebe0;
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 clamp(2rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
+    }
+
+    .bottom {
+      background: #b8c9a3;
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      padding: clamp(1.2rem, 3vw, 2rem) clamp(2rem, 6vw, 5rem) 0;
     }
 
     h1 {
-      font-family: 'Shrikhand', cursive;
+      font-family: 'PartsListLocal', cursive;
       color: #FFB400;
-      font-size: clamp(3.5rem, 14vw, 9rem);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: 0.15em;
+      line-height: 1.1;
     }
 
     p {
-      font-family: 'Inter', sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       font-weight: 300;
-      color: #c8e6c8;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      letter-spacing: 0.3em;
+      color: #8a7a5e;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      letter-spacing: 0.35em;
       text-transform: uppercase;
     }
   </style>
@@ -62,7 +81,11 @@
       <feColorMatrix type="saturate" values="0"/>
     </filter>
   </svg>
-  <h1>Nick Pyati</h1>
-  <p>Coming Soon</p>
+  <div class="top">
+    <h1>NICK PYATI</h1>
+  </div>
+  <div class="bottom">
+    <p>Coming Soon</p>
+  </div>
 </body>
 </html>
