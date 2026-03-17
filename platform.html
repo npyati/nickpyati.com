@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLATFORM — NICK PYATI</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    @font-face {
+      font-family: 'OpticMedium';
+      src: url('Optic-Medium.woff2') format('woff2'), local('Optic Trial Medium');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'OpticBook';
+      src: url('Optic-Book.woff2') format('woff2'), local('Optic Trial Book');
+      font-display: swap;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #FFB400;
+      font-family: 'OpticBook', sans-serif;
+    }
+
+    .header {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 6vw, 4rem) 0;
+    }
+
+    .back {
+      font-family: 'OpticBook', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #000;
+      opacity: 0.4;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .back:hover { opacity: 0.8; }
+
+    .campaign-note {
+      font-family: 'OpticBook', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #000;
+      opacity: 0.4;
+      margin-top: 1.5rem;
+    }
+
+    .page-title {
+      font-family: 'OpticMedium', sans-serif;
+      color: #FF6B4C;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: 0.15em;
+      line-height: 1.1;
+      font-weight: normal;
+      text-transform: uppercase;
+      margin-top: 1.25rem;
+    }
+
+    .archive-note {
+      font-family: 'OpticBook', sans-serif;
+      font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+      font-style: italic;
+      color: #000;
+      opacity: 0.5;
+      margin-top: 0.5rem;
+    }
+
+    .page-intro {
+      margin-top: 1.25rem;
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      line-height: 1.7;
+      color: #000;
+      opacity: 0.75;
+      padding-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    /* ── Platform sections ── */
+
+    .platform {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 clamp(2rem, 6vw, 4rem) clamp(4rem, 10vw, 8rem);
+    }
+
+    /* Level 1: top-level pillars */
+    .pillar {
+      border-top: 2px solid rgba(0,0,0,0.15);
+      margin-bottom: 0;
+    }
+
+    .pillar > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      user-select: none;
+    }
+    .pillar > summary::-webkit-details-marker { display: none; }
+
+    .pillar > summary .pillar-name {
+      font-family: 'OpticMedium', sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: normal;
+      color: #000;
+    }
+
+    .pillar > summary .indicator {
+      font-family: 'OpticBook', sans-serif;
+      font-size: 1.4rem;
+      color: #000;
+      opacity: 0.3;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+      line-height: 1;
+    }
+
+    .pillar[open] > summary .indicator { opacity: 0.6; }
+    .pillar[open] > summary .indicator::after { content: '−'; }
+    .pillar:not([open]) > summary .indicator::after { content: '+'; }
+
+    .pillar-intro {
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      line-height: 1.75;
+      color: #000;
+      opacity: 0.75;
+      padding-bottom: 1.5rem;
+    }
+
+    /* Level 2: subsections */
+    .subsection {
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-left: 0;
+    }
+
+    .subsection > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      user-select: none;
+    }
+    .subsection > summary::-webkit-details-marker { display: none; }
+
+    .subsection > summary .subsection-name {
+      font-family: 'OpticMedium', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: normal;
+      color: #000;
+    }
+
+    .subsection > summary .sub-indicator {
+      font-size: 1rem;
+      color: #000;
+      opacity: 0.25;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+      line-height: 1;
+    }
+    .subsection[open] > summary .sub-indicator { opacity: 0.5; }
+    .subsection[open] > summary .sub-indicator::after { content: '−'; }
+    .subsection:not([open]) > summary .sub-indicator::after { content: '+'; }
+
+    .subsection-intro {
+      font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+      line-height: 1.75;
+      color: #000;
+      opacity: 0.65;
+      padding-bottom: 1rem;
+    }
+
+    /* Level 3: policy planks */
+    .plank {
+      border-top: 1px solid rgba(0,0,0,0.07);
+      margin-left: 1rem;
+    }
+
+    .plank > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      user-select: none;
+    }
+    .plank > summary::-webkit-details-marker { display: none; }
+
+    .plank > summary .plank-name {
+      font-family: 'OpticBook', sans-serif;
+      font-size: clamp(0.8rem, 1.7vw, 0.9rem);
+      letter-spacing: 0.06em;
+      color: #000;
+      opacity: 0.75;
+    }
+    .plank[open] > summary .plank-name { opacity: 1; }
+
+    .plank > summary .plank-indicator {
+      font-size: 0.85rem;
+      color: #000;
+      opacity: 0.2;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .plank[open] > summary .plank-indicator { opacity: 0.4; }
+    .plank[open] > summary .plank-indicator::after { content: '−'; }
+    .plank:not([open]) > summary .plank-indicator::after { content: '+'; }
+
+    .plank-body {
+      font-size: clamp(0.82rem, 1.6vw, 0.9rem);
+      line-height: 1.8;
+      color: #000;
+      opacity: 0.7;
+      padding-bottom: 1rem;
+    }
+
+    .plank-body p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back" href="index.html">← Nick Pyati</a>
+    <p class="campaign-note">IL-09 Democratic Primary · 2025–26</p>
+    <h1 class="page-title">Platform</h1>
+    <p class="archive-note">This is an archive of the platform from my 2025-26 campaign for Congress in Illinois.</p>
+    <p class="page-intro">The promise of America is that every one of us should have the chance to live a life of dignity, hope, and joy. In a New American Century, we must harness our national strength to make sure each of us has the chance to live our own American Dreams.</p>
+  </div>
+
+  <div class="platform">
+
+    <!-- ══════════════════════════════════════════
+         PILLAR 1: RENEW THE AMERICAN DREAM
+    ══════════════════════════════════════════ -->
+    <details class="pillar">
+      <summary>
+        <span class="pillar-name">Renew the American Dream</span>
+        <span class="indicator"></span>
+      </summary>
+
+      <p class="pillar-intro">Greater opportunity, an end to the affordability crisis, and care for our families and communities — these are the foundations of an economy that works for everyone.</p>
+
+      <!-- Subsection: Expand Opportunity -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Expand Opportunity</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Opportunity is the ability to find purpose and possibility in a changing world. That requires a growing economy and the preparation to match it. Our kids need to be ready for an era shaped by AI and other emerging technologies, and adults need new pathways to build skills without crushing debt. Tweaks aren't enough — we need an overhaul that equips every American to rise.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Recommit to Public Education</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>I'm a true believer in public education — as a graduate, a teacher, and now a parent. Our neighborhood schools are woven so deeply into American life that we sometimes forget how extraordinary they are: a universal system that educates every child and helps form a shared national culture. But we haven't come close to realizing their full promise.</p>
+            <p>We need a school system built for the world our kids are entering — one shaped by rapid technological and economic change. That requires dramatically expanding the resources we invest, ensuring that every child and every family has the support and services they need in their school, and treating educators as the indispensable professionals they are.</p>
+            <p>Rolling back the Trump Administration's attacks on public education is only a first step. The real goal is simple: every school, in every community, equipped to help every child thrive.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Make Higher Education an Engine of Opportunity, Not Exclusion</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Today, too many entry-level jobs demand degrees that are unaffordable and saddle people with crushing debt. Higher education is a rich and valuable experience, but it's become a paywall to the middle class.</p>
+            <p>The solution is new pathways for developing skills. Some colleges are already experimenting with fast, flexible, and affordable programs that develop the skills employers want and place students in real jobs with real growth potential. In the twenty-first century, careers will evolve with the economy, and these programs can help people continually build the skills they need to stay ahead.</p>
+            <p>We can make it happen by investing in these options and incentivizing employers to hire through them.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Teach AI Literacy in Every School</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>We're living through an AI revolution whether we're ready or not. The question isn't if artificial intelligence will reshape our world — it's whether our kids will be prepared when it does.</p>
+            <p>AI literacy serves two purposes. First, it's foundational — the basic skills students need if they want to pursue tech careers. But second, and just as important, it's about navigating the world intelligently. Just like we teach critical thinking so students can absorb information wisely, they need to understand what algorithms are actually doing. That's literacy for the twenty-first century.</p>
+            <p>We need to invest seriously in basic computer science education and specifically AI — not just in elite schools, but everywhere. AI readiness should be universal, not a privilege.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: End the Affordability Crisis -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">End the Affordability Crisis</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Rent, groceries, childcare, and other daily necessities are getting more expensive, and incomes aren't keeping up. Families are working hard, budgeting, and still falling behind. Growth and opportunity are an essential part of the answer, but we can do more to make sure necessities are easily within reach for everyone.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Make American Markets Open and Competitive</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Tariffs aren't just taxes — they're economic sanctions we impose on ourselves. They're hidden costs that show up when you're buying clothes, groceries, electronics, or building materials. They hurt American companies too, making imported components more expensive and our own manufacturers less competitive abroad.</p>
+            <p>When a handful of companies control entire industries, they can jack up prices, squeeze suppliers, and stop innovating because they face no real competition. That's not the free market — it's rigging the game.</p>
+            <p>We need to fight on both fronts: end the senseless, wasteful tariffs and vigorously enforce antitrust laws to keep markets competitive.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Make It Easier to Build What We Need</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Housing costs are crushing families because we're not building enough of it. Zoning restrictions, permitting processes, and layers of separate regulations add up to make construction prohibitively expensive and slow. This same pattern plays out with healthcare facilities, transit infrastructure, and energy projects.</p>
+            <p>The answer isn't simply deregulation — it's smarter regulation. We should define our goals clearly: more affordable housing, accessible healthcare, reliable transit, clean energy. Then calibrate our rules to actually achieve those goals instead of blocking them.</p>
+            <p>The federal government can condition grants to states and cities on following best practices for permitting and zoning — rewarding places that make it easier to build, not harder.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Ease the Tax Burden on Working Families</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>America's tax code lets billionaires pay lower rates than middle-class families. That's not just unfair — it's fiscally unsustainable.</p>
+            <p>We can fix this without killing innovation or driving away investment. Close the loopholes that let the ultra-wealthy avoid taxes. Ensure large corporations pay taxes on their actual profits instead of shifting them to offshore havens. End the absurdity where heirs inherit billions tax-free while workers pay taxes on every paycheck.</p>
+            <p>Corporate rates would remain internationally competitive. Capital gains treatment would stay favorable for typical investors. We're targeting the extreme wealth concentration at the very top — the kind that often comes from inheritance and financial engineering rather than innovation.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: Take Care of Our Families -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Take Care of Our Families and Communities</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Quality of life is about more than income. It means access to healthcare, childcare, elder care, and more. It means safety and security for your family. Economic growth helps families afford the care they need, but we also need strong public programs ensuring great care even when people can't pay for it themselves.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Build a Care Economy for Everyone</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Most Americans live with a persistent anxiety: Will we lose our health insurance? Can we afford childcare? Who will care for aging parents while we work? Even in a wealthy nation, few escape these concerns.</p>
+            <p>Start by reversing cruel Medicaid cuts, preserving Social Security, and passing Medicare for All so no one goes bankrupt from medical bills or rations insulin. We need universal childcare and pre-K so every child gets a strong start, and support for elder care so aging Americans have dignity and their children aren't crushed by impossible burdens.</p>
+            <p>This isn't charity — it's investment. And as AI transforms work, care professions will be engines of growth and opportunity — jobs that can't be automated or shipped overseas.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">End Immigration Raids as Tools of Fear and Division</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Immigration raids accomplish nothing but terrorizing communities. Parents fear dropping their kids at school. Workers won't report labor violations or dangerous conditions because they're afraid of being deported. Families live in constant dread that someone they love will be taken away.</p>
+            <p>This cruelty serves no legitimate purpose. We need comprehensive immigration reform that creates legal pathways for people already here, treats everyone with dignity, and focuses enforcement on actual threats to public safety — not on hardworking families.</p>
+            <p>We can secure our borders and enforce our laws without weaponizing fear against people who just want to build a better life for their families.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Support Americans Caring for Their Families</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Workers shouldn't have to choose between keeping their job and being there for the people they love. Yet millions face that choice every year — new parents returning to work days after childbirth, adult children unable to care for dying parents, people forced to choose between a paycheck and a sick spouse.</p>
+            <p>We need paid family leave so workers can be present for newborns, aging parents, or seriously ill loved ones without losing their livelihoods. Workplace protections that prevent firing someone because they need time for a family emergency. Flexibility that acknowledges life doesn't happen on a neat schedule.</p>
+            <p>Workers who can care for their families without fear are more productive, more loyal, more focused when they're at work. Supporting family care isn't a burden on the economy — it strengthens it.</p>
+          </div>
+        </details>
+      </details>
+
+    </details><!-- /pillar 1 -->
+
+
+    <!-- ══════════════════════════════════════════
+         PILLAR 2: BUILD THE FUTURE
+    ══════════════════════════════════════════ -->
+    <details class="pillar">
+      <summary>
+        <span class="pillar-name">Build the Future</span>
+        <span class="indicator"></span>
+      </summary>
+
+      <p class="pillar-intro">We can accomplish extraordinary things in this century — an energy transition, breakthrough medical treatments, a revolution in education, and more. Innovation is how we get there. Growth shouldn't be about making the rich richer — it should expand what's possible for everyone.</p>
+
+      <!-- Subsection: Research & Innovation -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Invest in Research and Innovation</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">The breakthroughs that will define tomorrow start in labs today. We're squandering that future. Canceled research programs, attacks on universities, restrictions on skilled immigration, chaos driving investment overseas — we're dismantling the engine of American invention that took centuries to build.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Expand Federal Research Funding</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>This administration has systematically attacked American science — canceling grants mid-research, slashing university funding, censoring fields of inquiry based on politics. We need to immediately reverse these cuts, restore canceled grants, and end political interference in peer review.</p>
+            <p>But reversing damage isn't enough. We need sustained, expanded commitment to research that matches the scale of challenges we face — climate, health, pandemic prevention. Our research system also needs modernizing: faster and more responsive funding, encouragement for bold high-risk ideas, and trust in scientists to pursue the questions that matter most.</p>
+            <p>Federally-funded research built the Internet, GPS, and mRNA vaccines. It can solve the challenges of this century — if we give it the resources and freedom it needs.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Keep America at the Forefront of Twenty-First Century Technologies</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>America's economic leadership depends on leading in the industries of the future — semiconductors, artificial intelligence, clean energy, advanced manufacturing, biotechnology, and more. We can't afford to cede this ground to China or anyone else.</p>
+            <p>Strategic public investment can unlock potential across the entire country. This isn't about picking winners and losers — it's about ensuring America has the industrial capacity we need for national security and economic prosperity. When pandemics hit, we couldn't produce enough masks. When supply chains broke, we couldn't get the chips our economy depends on. That can't happen again.</p>
+            <p>China is making massive investments in these sectors. Europe is doing the same. If America doesn't compete, we'll fall behind in the technologies that will define the twenty-first century.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Attract the World's Best to Build in America</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>One of America's greatest advantages is that we attract the world's best minds. The researchers who developed mRNA vaccines, the engineers who built Silicon Valley, the entrepreneurs who founded some of our most successful companies — many came from somewhere else and chose to build here.</p>
+            <p>We've made it harder for brilliant students, scientists, inventors, and entrepreneurs to come and stay. Meanwhile, other countries aggressively compete for this talent with faster visas and better support.</p>
+            <p>There are brilliant people everywhere. Either we bring them here to build American companies, or we force them elsewhere to compete against us. When a PhD student trains here but can't stay, we've educated our competition. We should be winning the global competition for talent.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: Open the Economy -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Open the Economy</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Free and competitive markets are cornerstones of growth, prosperity, and progress. This administration picks winners and losers, but ends up weakening the economy for everyone. We need open markets where companies succeed by building better products, not by lobbying for protection.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Strengthen American Trade</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Trump's tariffs have raised prices on everything from washing machines to steel to food. Tariffs are taxes on consumption that hit working families hardest. American manufacturers pay more for imported components, making them less competitive globally. Farmers have been devastated as countries retaliate with tariffs on American agricultural exports.</p>
+            <p>We're alienating trading partners when we need them most. Other countries are moving on without us, forming new partnerships and leaving American businesses behind.</p>
+            <p>We should eliminate these tariffs and rebuild trade relationships. Open trade lowers costs, expands export markets, and forces innovation. That's how we build strength, not by hiding behind walls.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Build a Fiercely Competitive Economy</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>As a former antitrust attorney, I've seen how monopolies strangle innovation and opportunity. When a handful of companies dominate entire industries, they can block new competitors, buy up threats before they emerge, and stop innovating because they face no pressure to improve.</p>
+            <p>Vigorous antitrust enforcement gives small and innovative companies a real chance to win. That means blocking anticompetitive mergers, breaking up monopolies when necessary, and stopping the abuses that let dominant firms crush upstarts.</p>
+            <p>When markets are truly competitive, everyone benefits. Consumers get lower prices and better products. Entrepreneurs can build companies without getting crushed. That's an economy where great ideas have a real shot.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Pursue Fair and Responsible Growth</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>We can grow the economy while protecting workers and communities. We've done it before — building a strong middle class and expanding social protections together. We can do it again.</p>
+            <p>Companies should compete by producing the most value with the greatest efficiency — building better products, serving customers well, operating smarter. Fair labor and environmental standards ensure that's exactly what happens. These standards level the playing field: businesses that invest in safety, pay fairly, and manage environmental impacts shouldn't be undercut by those that don't. Strong standards push all companies to compete on innovation and quality. That's how we get growth that drives progress forward.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: Orient Economy Toward Big Challenges -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Orient Our Economy Toward Solving Big Challenges</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">The great challenges of this century — responsible AI, climate change, global pandemics, and human rights — require organizing our economy's rules to drive progress on what matters most. We need frameworks that make solving urgent challenges the path to success.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Give the Public a Voice in Shaping AI</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Traditional regulation can't keep up with AI. Having lawyers write rules and adjudicate them in courts is absurd for a technology this novel, moving this fast. We need a new model at the frontier.</p>
+            <p>One approach worth exploring: embed public representatives in major AI companies, with dedicated staffs. These representatives would provide ongoing public input into development decisions — not binding authority, but a voice in the room where choices get made. Companies would get clarity about public concerns in real-time instead of facing harsh regulatory backlash later.</p>
+            <p>AI is too important to be shaped entirely by a handful of companies. But it's also too fast-moving for traditional regulation. We need to invent new ways to give the public a voice.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Set Global Standards That Lift Everyone</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Open trade doesn't mean ignoring how goods are produced. We can open markets while ensuring they don't become a race to the bottom on labor rights, environmental protections, or human rights.</p>
+            <p>When countries agree on common rules for worker safety, environmental standards, or human rights protections, companies can compete on quality and cost rather than on who can exploit workers or communities the most. American workers shouldn't have to compete with exploited labor.</p>
+            <p>This isn't protectionism — it's consistent with fighting for freedom and democracy everywhere. Strong international standards mean American companies compete on merit, workers everywhere get basic protections, and we don't have to choose between open trade and our values.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Use Markets to Solve Global Challenges</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Climate change, future pandemics, and other existential threats require mobilizing the full power of markets and innovation to solve them. That means designing regulation not just to prevent harm, but to actively reward companies that deliver breakthrough solutions.</p>
+            <p>We should structure markets so that solving climate change is the most profitable path forward — creating clear standards, certain timelines, and substantial rewards for companies that help us decarbonize. The same approach works for pandemic preparedness.</p>
+            <p>Define the problems that need solving and let markets figure out how. When we harness market forces toward urgent challenges rather than just constraining bad behavior, we unlock the innovation and scale needed to actually solve them.</p>
+          </div>
+        </details>
+      </details>
+
+    </details><!-- /pillar 2 -->
+
+
+    <!-- ══════════════════════════════════════════
+         PILLAR 3: FIGHT FOR FREEDOM
+    ══════════════════════════════════════════ -->
+    <details class="pillar">
+      <summary>
+        <span class="pillar-name">Fight for Freedom</span>
+        <span class="indicator"></span>
+      </summary>
+
+      <p class="pillar-intro">The defining struggle of the last century was the fight against autocracy. That fight is back. We must reclaim democracy at home — not only because we deserve it, but because the world needs America to stand for freedom again.</p>
+
+      <!-- Subsection: Secure American Democracy -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Secure American Democracy</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Preserving democracy is the single most important challenge we face. Without a healthy democracy, we can't accomplish any of our goals. We need to end the intimidation of our communities, protect voting rights, end corruption, and restore faith that democracy can deliver for everybody.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">End Federal Intimidation</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Federal agencies and law enforcement exist to serve the American people, not to terrorize them. This administration has weaponized government power — using ICE raids to terrorize communities, targeting political opponents and critics, turning agencies into tools of fear and control.</p>
+            <p>When parents are afraid to drop their kids at school, when workers won't report labor violations, when people won't organize or speak up because the government might come after them, democracy cannot function.</p>
+            <p>We need to end these abuses immediately. Then restructure these agencies, investigate the abuses, and put the right leaders in charge to rebuild the competence and trust that this administration has destroyed.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Protect Free Expression</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>This administration uses every lever of power to control what people can say, teach, research, and publish. They threaten universities with funding cuts. They pressure the press. They go after private companies for speech they don't like. The goal is intimidation — make everyone afraid that if they step out of line, they'll be next.</p>
+            <p>This destroys the free inquiry, honest debate, and open exchange of ideas that democracy depends on. Universities can't pursue truth when they're afraid of losing funding. The press can't hold power accountable when they fear retaliation.</p>
+            <p>Protecting free expression isn't primarily about policy — it's about leadership. A free society requires that people and organizations can speak, research, and challenge power without fear of government retaliation.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Strengthen Campaign Finance Laws</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Money has too much influence in our politics. Billionaires and corporations can flood elections with unlimited spending while ordinary people's voices get drowned out. The result is a government that's more responsive to big donors than to voters.</p>
+            <p>We need transparency so voters know who's funding campaigns. Public financing options so candidates can run without being beholden to wealthy interests. Closing the loopholes that let unlimited dark money flood our elections.</p>
+            <p>Democracy works when every voice matters, not just those who can afford to be heard. We can build a system where elections are won by ideas and organizing, not by who raises the most money.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: Civil and Human Rights -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Advance Civil and Human Rights</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">Civil and human rights are under assault. We need to strengthen protections for everyone — restoring and expanding the Voting Rights Act, protecting reproductive freedom, ensuring equality under the law regardless of sexual orientation or gender identity, and confronting racism wherever it exists. We can't compromise on these principles to win elections.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Fulfill America's Promise of Equal Rights</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>A great nation defends and celebrates all of its people — ensuring everyone can vote, work, learn, and participate fully in our democracy regardless of who they are or where they come from.</p>
+            <p>Strong enforcement of civil rights laws means protecting voting rights so every voice is heard. It means ensuring equal treatment in employment, housing, and education so talent and hard work determine success, not discrimination.</p>
+            <p>When we enforce civil rights vigorously, we become the country we aspire to be — one where everyone has a fair shot, where diversity strengthens us, and where we draw on the full talents and contributions of all Americans.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Defend the Right to Live and Love as Yourself</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Every American deserves the freedom to live openly and love who they choose without fear of discrimination, violence, or government interference. That means protecting marriage equality, ensuring access to gender-affirming care, and defending people from discrimination in employment, housing, education, and public life.</p>
+            <p>These rights are under relentless attack. States are banning healthcare for transgender people and trying to erase LGBTQ+ people from public life. The federal government is weaponizing agencies to punish institutions that protect these communities.</p>
+            <p>This isn't about special rights. It's about the fundamental freedom to be yourself, to love who you love, and to live with dignity. That's what America should stand for.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Defend Reproductive Freedom Everywhere</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Reproductive choice is core to freedom. Women must be able to make their own decisions about their bodies, their health, and their futures without government interference.</p>
+            <p>The overturning of Roe has unleashed chaos across the country. States are banning abortion, criminalizing doctors, and forcing impossible choices on women and families. Healthcare decisions that should be between a woman and her doctor are now being made by politicians.</p>
+            <p>We need to restore reproductive freedom everywhere — codifying the right to choose in federal law, ensuring access to the full range of reproductive healthcare, and protecting doctors who provide this care.</p>
+          </div>
+        </details>
+      </details>
+
+      <!-- Subsection: Defend Democracy Around the World -->
+      <details class="subsection">
+        <summary>
+          <span class="subsection-name">Defend Democracy Around the World</span>
+          <span class="sub-indicator"></span>
+        </summary>
+        <p class="subsection-intro">America must support freedom and prosperity around the world — not as charity, but because it's good for America. When democracies thrive, we gain allies, trading partners, and a more stable world. When autocracies expand, we face threats to our security and interests.</p>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Rebuild and Honor Our Alliances</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>Strong alliances have kept America safe and prosperous for generations. NATO has maintained peace and freedom in Europe for seventy-five years. Our partnerships in Asia have contained aggression and built prosperity. These relationships give us forward bases, shared intelligence, and allies who stand with us in crises.</p>
+            <p>This administration has undermined these alliances, questioned our commitments, and treated partnerships as disposable. We need to rebuild trust and honor the relationships that make us strong — showing up, keeping our word, and asserting American leadership through partnership, not isolation.</p>
+            <p>Our alliances aren't a burden — they're one of America's greatest strategic advantages.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Build a World of Prosperous Democracies</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>American aid around the world isn't charity — it's strategic investment. When we help countries build health systems, strengthen agriculture, improve education, and develop infrastructure, we create stable, prosperous partners instead of failing states that breed instability and extremism.</p>
+            <p>Foreign aid represents less than one percent of our federal budget, but it yields outsized returns. This administration has slashed aid budgets, ceding influence to China and Russia who are eager to fill the void.</p>
+            <p>When America leads with aid and investment, we shape the future — building a world of prosperous democracies that share our values, trade with us, and stand with us.</p>
+          </div>
+        </details>
+
+        <details class="plank">
+          <summary>
+            <span class="plank-name">Defend Democracy with a Modern Military</span>
+            <span class="plank-indicator"></span>
+          </summary>
+          <div class="plank-body">
+            <p>America's military keeps us safe and defends freedom around the world. In an era of rising autocratic threats, we need a military that can deter adversaries, defend our allies, and prevail if conflict comes.</p>
+            <p>That means investing in modernization — advanced capabilities in cyber warfare, artificial intelligence, space, and autonomous systems. It also means sufficient capacity to defend our interests across multiple theaters. And it means supporting military families and ensuring veterans get the care they've earned.</p>
+            <p>When America and our allies are strong, adversaries think twice about aggression. We need a military that ensures they see strength, unity, and resolve.</p>
+          </div>
+        </details>
+      </details>
+
+    </details><!-- /pillar 3 -->
+
+  </div><!-- /platform -->
+
+</body>
+</html>
