@@ -93,11 +93,7 @@
     .content a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(0,0,0,0.3);
-      transition: border-color 0.15s;
     }
-
-    .content a:hover { border-bottom-color: #000; }
 
     .content ul {
       list-style: none;
@@ -111,19 +107,30 @@
       padding: 0.6rem 0;
     }
 
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .project-tile {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
-      padding: 1.25rem 0;
+      padding: 1.25rem;
       transition: opacity 0.2s;
     }
 
     .project-tile.p4i {
       padding: 0.4rem 0;
-    }
-
-    .project-tile:last-of-type {
-      padding-bottom: 2.5rem;
     }
 
     .project-tile:hover { opacity: 0.5; }
@@ -191,7 +198,7 @@
     .album {
       max-width: 680px;
       margin: 0 auto;
-      padding: 0 clamp(2rem, 6vw, 4rem) clamp(2rem, 4vw, 3rem);
+      padding: 0 clamp(2rem, 6vw, 4rem) 1rem;
     }
 
     .album-label {
@@ -375,9 +382,20 @@
       });
     }
 
+    function pickFeatured(schedule) {
+      const today = new Date().toISOString().slice(0, 10);
+      const sorted = schedule.slice().sort((a, b) => a.date.localeCompare(b.date));
+      let active = sorted[0];
+      for (const entry of sorted) {
+        if (entry.date <= today) active = entry;
+      }
+      return active;
+    }
+
     fetch('https://npyati.github.io/universalmusiclink/featured.json')
       .then(r => r.json())
-      .then(d => {
+      .then(data => {
+        const d = pickFeatured(data.schedule);
         document.getElementById('album-title').textContent = d.title;
         document.getElementById('album-artist').textContent = d.artist;
         document.getElementById('album-art').src = d.image;
@@ -393,18 +411,20 @@
     <p>I believe that we need an expansive vision for the future to exit the tragic present, and that's what I'm working on.</p>
 
     <h2>Projects</h2>
-    <a class="project-tile cn" href="https://complicitynavigator.com" target="_blank" rel="noopener">
-      <img src="logo-cn.svg" alt="Complicity Navigator">
-    </a>
-    <a class="project-tile" href="https://thenewamericancentury.com" target="_blank" rel="noopener">
-      <img src="logo-nac.svg" alt="New American Century">
-    </a>
-    <a class="project-tile p4i" href="platform.html">
-      <img src="logo-p4i.svg" alt="Pyati for Illinois">
-    </a>
-    <a class="project-tile" href="https://squaresga.me" target="_blank" rel="noopener">
-<span class="project-tile-text">squares</span>
-    </a>
+    <div class="project-grid">
+      <a class="project-tile cn" href="https://complicitynavigator.com" target="_blank" rel="noopener">
+        <img src="logo-cn.svg" alt="Complicity Navigator">
+      </a>
+      <a class="project-tile" href="https://thenewamericancentury.com" target="_blank" rel="noopener">
+        <img src="logo-nac.svg" alt="New American Century">
+      </a>
+      <a class="project-tile p4i" href="platform.html">
+        <img src="logo-p4i.svg" alt="Pyati for Illinois">
+      </a>
+      <a class="project-tile" href="https://squaresga.me" target="_blank" rel="noopener">
+        <span class="project-tile-text">squares</span>
+      </a>
+    </div>
 
     <h2>Contact</h2>
     <p><a href="mailto:hi@nickpyati.com">hi@nickpyati.com</a></p>
