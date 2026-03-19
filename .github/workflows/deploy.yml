@@ -1,0 +1,26 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject fonts
+        run: |
+          echo "${{ secrets.FONT_OPTIC_MEDIUM }}" | base64 -d > Optic-Medium.woff2
+          echo "${{ secrets.FONT_OPTIC_BOOK }}" | base64 -d > Optic-Book.woff2
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
