@@ -383,7 +383,7 @@
     }
 
     function pickFeatured(schedule) {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })).toISOString().slice(0, 10);
       const sorted = schedule.slice().sort((a, b) => a.date.localeCompare(b.date));
       let active = sorted[0];
       for (const entry of sorted) {
