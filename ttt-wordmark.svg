@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2130 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Turn the Tide">
+  <title>Turn the Tide</title>
+  <defs>
+    <linearGradient id="ttt-flow" x1="0" y1="0" x2="2130" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f3df0"/>
+      <stop offset="1" stop-color="#ff6f5e"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="url(#ttt-flow)">
+
+    <!-- ── TURN ──────────────────────────────────────────────────────── -->
+
+    <!-- T at x=30, width 145 -->
+    <g transform="translate(30, 30)">
+      <rect x="0" y="0" width="145" height="55" rx="22"/>
+      <rect x="40" y="0" width="65" height="180" rx="22"/>
+    </g>
+
+    <!-- U at x=200, width 175 -->
+    <g transform="translate(200, 30)">
+      <path d="M 18 0 L 47 0 Q 65 0 65 18 L 65 100 C 65 130 110 130 110 100 L 110 18 Q 110 0 128 0 L 157 0 Q 175 0 175 18 L 175 105 C 175 200 0 200 0 105 L 0 18 Q 0 0 18 0 Z"/>
+    </g>
+
+    <!-- R at x=400, width 175 -->
+    <g transform="translate(400, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <path fill-rule="evenodd" d="M 50 0 L 110 0 C 170 0 170 95 110 95 L 50 95 Z M 50 28 L 100 28 C 138 28 138 67 100 67 L 50 67 Z"/>
+      <path d="M 55 80 L 115 80 L 175 168 Q 175 180 163 180 L 130 180 L 55 105 Z"/>
+    </g>
+
+    <!-- N at x=600, width 165 -->
+    <g transform="translate(600, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <rect x="100" y="0" width="65" height="180" rx="22"/>
+      <path d="M 55 0 L 110 0 L 155 180 L 100 180 Z"/>
+    </g>
+
+    <!-- ── THE ───────────────────────────────────────────────────────── -->
+
+    <!-- T at x=845, width 145 -->
+    <g transform="translate(845, 30)">
+      <rect x="0" y="0" width="145" height="55" rx="22"/>
+      <rect x="40" y="0" width="65" height="180" rx="22"/>
+    </g>
+
+    <!-- H at x=1015, width 175 -->
+    <g transform="translate(1015, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <rect x="110" y="0" width="65" height="180" rx="22"/>
+      <rect x="0" y="70" width="175" height="48" rx="14"/>
+    </g>
+
+    <!-- E at x=1215, width 155 -->
+    <g transform="translate(1215, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <rect x="0" y="0" width="155" height="55" rx="22"/>
+      <rect x="0" y="72" width="120" height="46" rx="18"/>
+      <rect x="0" y="125" width="155" height="55" rx="22"/>
+    </g>
+
+    <!-- ── TIDE ──────────────────────────────────────────────────────── -->
+
+    <!-- T at x=1450, width 145 -->
+    <g transform="translate(1450, 30)">
+      <rect x="0" y="0" width="145" height="55" rx="22"/>
+      <rect x="40" y="0" width="65" height="180" rx="22"/>
+    </g>
+
+    <!-- I at x=1620, width 95 -->
+    <g transform="translate(1620, 30)">
+      <rect x="0" y="0" width="95" height="50" rx="20"/>
+      <rect x="15" y="0" width="65" height="180" rx="22"/>
+      <rect x="0" y="130" width="95" height="50" rx="20"/>
+    </g>
+
+    <!-- D at x=1740, width 175 -->
+    <g transform="translate(1740, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <path fill-rule="evenodd" d="M 50 0 L 110 0 C 178 0 178 180 110 180 L 50 180 Z M 50 30 L 100 30 C 150 30 150 150 100 150 L 50 150 Z"/>
+    </g>
+
+    <!-- E at x=1940, width 155 -->
+    <g transform="translate(1940, 30)">
+      <rect x="0" y="0" width="65" height="180" rx="22"/>
+      <rect x="0" y="0" width="155" height="55" rx="22"/>
+      <rect x="0" y="72" width="120" height="46" rx="18"/>
+      <rect x="0" y="125" width="155" height="55" rx="22"/>
+    </g>
+
+  </g>
+</svg>
